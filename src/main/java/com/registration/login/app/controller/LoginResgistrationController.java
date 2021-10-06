@@ -16,6 +16,7 @@ import com.registration.login.app.services.UserServices;
 
 
 @Controller
+//RestCOntroller
 public class LoginResgistrationController {
 
 	private UserServices userServices;

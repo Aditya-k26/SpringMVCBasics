@@ -2,16 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <title>Login Page</title>
 </head>
 <body>
-	<h1>Login Page</h1>
+	
+	<div class = "container align-center col-lg-5">
+	<h1 style="text-align:center">Login Page</h1>
 	<form th:action="@{/process_login}" th:object="${user_details}" method="post">
-  		<label for="username">Username:</label><br>
-  		<input type="text" th:field="*{username}"><br>
-  		<label for="password">Password:</label><br>
-  		<input type="password" th:field="*{password}"><br><br>
-  		<input type="submit" value="Login">
+  		<label for="username">Username:</label>
+  		<input type="text" th:field="*{username}" class="form-control" required minlength="3">
+  		<label for="password">Password:</label>
+  		<input type="password" th:field="*{password}" class="form-control" required minlength="6"><br>
+  		<input class="btn btn-primary" type="submit" value="Login">
 	</form>
+	</div>
 </body>
 </html>
