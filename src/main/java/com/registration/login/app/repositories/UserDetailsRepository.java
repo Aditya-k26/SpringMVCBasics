@@ -13,8 +13,8 @@ public interface UserDetailsRepository extends JpaRepository<UserDetails, Intege
 	@Query(value = "select * from user_details u where binary u.username = :username", nativeQuery = true)
 	public UserDetails findByUsername(String username);
 
-	@Query(value = "select * from user_details u where binary u.password = :password", nativeQuery = true)
-	public UserDetails findByPassword(String password);
+	@Query(value = "select * from user_details u where binary u.username= :username AND u.password = :password", nativeQuery = true)
+	public UserDetails findByPassword(String password, String username);
 
 	@Modifying(clearAutomatically = true, flushAutomatically = true)
 	@Transactional

@@ -43,7 +43,7 @@ public class UserServicesImpl implements UserServices {
 			throw new AccountBlockedException("Sorry this account was blocked permanently");
 		}
 
-		if (repository.findByPassword(user.getPassword()) == null) {
+		if (repository.findByPassword(user.getPassword(), user.getUsername()) == null) {
 			UserDetails foundUser = repository.findByUsername(user.getUsername());
 			if (foundUser.getFailedTries() == 2) {
 				repository.updateIsLocked(foundUser.getUsername(), 1);
