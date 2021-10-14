@@ -7,6 +7,7 @@ import com.registration.login.app.exceptions.InvalidCredentialsException;
 import com.registration.login.app.exceptions.InvalidUsernameException;
 import com.registration.login.app.exceptions.UserAlreadyExistsException;
 
+
 public interface UserServices {
 	public void registerUser(UserDetails user) throws UserAlreadyExistsException;
 

@@ -23,7 +23,7 @@ public class UserServicesImpl implements UserServices {
 
 	@Override
 	public void registerUser(UserDetails user) throws UserAlreadyExistsException {
-		if (repository.existsUserDetailsByUsername(user.getUsername()) != 0) {
+		if (repository.existsUserDetailsByUsername(user.getUsername()) != null) {
 			throw new UserAlreadyExistsException("User with " + user.getUsername() + " already exists!");
 		}
 		repository.save(user);
@@ -33,7 +33,7 @@ public class UserServicesImpl implements UserServices {
 	public void loginUser(UserDetails user)
 			throws InvalidUsernameException, ExcessFailedTriesException, InvalidCredentialsException,
 			AccountBlockedException {
-		System.out.println(user);
+		// System.out.println(user);
 
 		if (repository.findByUsername(user.getUsername()) == null) {
 			throw new InvalidUsernameException("User with " + user.getUsername() + " doesn't exists!");
@@ -45,6 +45,7 @@ public class UserServicesImpl implements UserServices {
 
 		if (repository.findByPassword(user.getPassword(), user.getUsername()) == null) {
 			UserDetails foundUser = repository.findByUsername(user.getUsername());
+
 			if (foundUser.getFailedTries() == 2) {
 				repository.updateIsLocked(foundUser.getUsername(), 1);
 				throw new ExcessFailedTriesException("Sorry, too many failed attempts! You account with Username -> "
@@ -58,7 +59,6 @@ public class UserServicesImpl implements UserServices {
 		}
 
 		repository.updateUserFailedTries(user.getUsername(), 0);
-
 	}
 
 }

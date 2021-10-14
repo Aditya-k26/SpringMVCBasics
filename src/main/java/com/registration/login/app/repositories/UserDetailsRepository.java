@@ -18,14 +18,14 @@ public interface UserDetailsRepository extends JpaRepository<UserDetails, Intege
 
 	@Modifying(clearAutomatically = true, flushAutomatically = true)
 	@Transactional
-	@Query(value = "update user_details u SET u.failed_tries = :failedTries where binary u.username = :username ", nativeQuery = true)
+	@Query(value = "update user_details SET failed_tries = :failedTries where binary username = :username ", nativeQuery = true)
 	public void updateUserFailedTries(String username, Integer failedTries);
 
 	@Modifying(clearAutomatically = true, flushAutomatically = true)
 	@Transactional
-	@Query(value = "update user_details u SET u.locked = :isLocked where binary u.username = :username ", nativeQuery = true)
+	@Query(value = "update user_details SET locked = :isLocked where binary username = :username ", nativeQuery = true)
 	public void updateIsLocked(String username, Integer isLocked);
 
-	@Query(value = "select COUNT(*) from user_details u where binary u.username = :username", nativeQuery = true)
+	@Query(value = "select * from user_details where binary username = :username", nativeQuery = true)
 	public Integer existsUserDetailsByUsername(String username);
 }

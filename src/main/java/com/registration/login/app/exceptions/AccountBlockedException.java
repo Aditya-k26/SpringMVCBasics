@@ -1,6 +1,6 @@
 package com.registration.login.app.exceptions;
 
-public class AccountBlockedException extends Exception {
+public class AccountBlockedException extends RuntimeException {
 
 	/**
 	 * 
@@ -10,5 +10,6 @@ public class AccountBlockedException extends Exception {
 	public AccountBlockedException(String message) {
 		super(message);
 	}
+
 
 }
